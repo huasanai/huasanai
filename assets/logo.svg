@@ -42,21 +42,37 @@
         0%, 100% { opacity: 0.4; transform: scale(1); }
         50%      { opacity: 0.95; transform: scale(1.25); }
       }
+      /* 一阵风吹过雨伞的物理过程：
+         快速向右倾斜 → 在右侧停滞 → 回弹越过原位偏左 → 微晃 → 复位等下一阵风 */
+      @keyframes sway {
+        0%,  5%    { transform: rotate(0deg); }       /* 风前的平静 */
+        18%        { transform: rotate(2.5deg); }       /* 风来：快速向右 */
+        15%        { transform: rotate(2deg); }     /* 风持续：在右侧停滞 */
+        55%        { transform: rotate(-1.3deg); }    /* 风减弱：回弹，越过原位偏左 */
+        62%        { transform: rotate(-1.8deg); }    /* 微晃 1 */
+        70%        { transform: rotate(-0.5deg); }
+        80%        { transform: rotate(-1deg); }      /* 微晃 2 */
+        90%, 100%  { transform: rotate(0deg); }       /* 复位，等下一阵 */
+      }
 
-      .d-1 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.0s backwards; transform-origin: 200px 130px; }
-      .d-2 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.12s backwards; transform-origin: 300px 130px; }
-      .d-3 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.24s backwards; transform-origin: 400px 130px; }
-      .d-4 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.36s backwards; transform-origin: 500px 130px; }
-      .d-5 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.48s backwards; transform-origin: 600px 130px; }
-      .d-6 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.60s backwards; transform-origin: 700px 130px; }
-      .d-7 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.72s backwards; transform-origin: 800px 130px; }
-      .d-8 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.84s backwards; transform-origin: 900px 130px; }
+      /* 所有圆点统一以自身几何中心为变换原点，移动 cx 时无需同步改 transform-origin */
+      .d-1, .d-2, .d-3, .d-4, .d-5, .d-6, .d-7, .d-8, .d-big, .d-glow {
+        transform-box: fill-box;
+        transform-origin: center;
+      }
+
+      .d-1 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.0s backwards; }
+      .d-2 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.12s backwards; }
+      .d-3 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.24s backwards; }
+      .d-4 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.36s backwards; }
+      .d-5 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.48s backwards; }
+      .d-6 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.60s backwards; }
+      .d-7 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.72s backwards; }
+      .d-8 { animation: scaleIn 0.4s cubic-bezier(0.16,1,0.3,1) 0.84s backwards; }
       .d-big {
         animation: scaleIn 0.6s cubic-bezier(0.16,1,0.3,1) 1.0s backwards;
-        transform-origin: 1000px 130px;
       }
       .d-glow {
-        transform-origin: 1000px 130px;
         animation: fadeIn 0.6s ease 1.3s backwards,
                    pulse 2.4s ease-in-out 1.8s infinite;
       }
@@ -66,8 +82,13 @@
         animation: drawLine 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.9s backwards;
       }
 
+      /* 伞的摆动支点：画布坐标系下"伞柄底部"（J 形钩最低点，≈ 130, 287）
+         模拟人持伞、风吹动的物理感
+         入场 fadeUp 结束后 0.1s 启动循环 */
       .umbrella-mini {
-        animation: fadeUp 1.0s cubic-bezier(0.16,1,0.3,1) 2.1s backwards;
+        transform-origin: 130px 287px;
+        animation: fadeUp 1.0s cubic-bezier(0.16,1,0.3,1) 2.1s backwards,
+                   sway 7s ease-in-out 3.2s infinite;
       }
       .title-main { animation: fadeUp 1.0s cubic-bezier(0.16,1,0.3,1) 2.1s backwards; }
       .title-line {
@@ -87,34 +108,37 @@
   <rect width="1200" height="380" fill="url(#bgGrad)"/>
   <rect x="20" y="20" width="1160" height="340" rx="20" fill="none" stroke="rgba(255,255,255,0.08)"/>
 
-  <!-- 8 个小点（左→右逐渐变色） + 1 个大点（终点） -->
-  <circle class="d-1" cx="200"  cy="130" r="4" fill="rgba(255,255,255,0.25)"/>
-  <circle class="d-2" cx="300"  cy="130" r="4" fill="rgba(255,255,255,0.32)"/>
-  <circle class="d-3" cx="400"  cy="130" r="4" fill="rgba(255,255,255,0.42)"/>
-  <circle class="d-4" cx="500"  cy="130" r="5" fill="rgba(255,255,255,0.55)"/>
-  <circle class="d-5" cx="600"  cy="130" r="5" fill="#a8a3d8"/>
-  <circle class="d-6" cx="700"  cy="130" r="6" fill="#8478d9"/>
-  <circle class="d-7" cx="800"  cy="130" r="6" fill="#8478d9"/>
-  <circle class="d-8" cx="900"  cy="130" r="7" fill="#7a6dd0"/>
+  <!-- timeline + 圆点 + DAY/TODAY 标签：整体右移参数（只改这个 translate 的 X） -->
+  <g transform="translate(110, 0)">
+    <!-- 8 个小点（左→右逐渐变色） + 1 个大点（终点）：85px 间距，整体在 200→880 之间分布 -->
+    <circle class="d-1" cx="200" cy="130" r="4" fill="rgba(255,255,255,0.25)"/>
+    <circle class="d-2" cx="285" cy="130" r="4" fill="rgba(255,255,255,0.32)"/>
+    <circle class="d-3" cx="370" cy="130" r="4" fill="rgba(255,255,255,0.42)"/>
+    <circle class="d-4" cx="455" cy="130" r="5" fill="rgba(255,255,255,0.55)"/>
+    <circle class="d-5" cx="540" cy="130" r="5" fill="#a8a3d8"/>
+    <circle class="d-6" cx="625" cy="130" r="6" fill="#8478d9"/>
+    <circle class="d-7" cx="710" cy="130" r="6" fill="#8478d9"/>
+    <circle class="d-8" cx="795" cy="130" r="7" fill="#7a6dd0"/>
 
-  <!-- 大终点：发光 + pulse -->
-  <circle class="d-glow" cx="1000" cy="130" r="36" fill="url(#dotGlow)"/>
-  <circle class="d-big"  cx="1000" cy="130" r="13" fill="#8478d9" stroke="#c4bdef" stroke-width="2"/>
+    <!-- 大终点：发光 + pulse -->
+    <circle class="d-glow" cx="880" cy="130" r="36" fill="url(#dotGlow)"/>
+    <circle class="d-big"  cx="880" cy="130" r="13" fill="#8478d9" stroke="#c4bdef" stroke-width="2"/>
 
-  <!-- Timeline -->
-  <line class="timeline" x1="180" y1="180" x2="1020" y2="180"
-        stroke="rgba(132,120,217,0.45)" stroke-width="2" stroke-linecap="round"/>
+    <!-- Timeline：两端各超出 20px -->
+    <line class="timeline" x1="180" y1="180" x2="900" y2="180"
+          stroke="rgba(132,120,217,0.45)" stroke-width="2" stroke-linecap="round"/>
 
-  <!-- "每天一个点，连成线" 极小说明 -->
-  <text font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="10"
-        fill="rgba(255,255,255,0.35)" letter-spacing="3">
-    <tspan class="signature" x="200" y="205">DAY 001</tspan>
-    <tspan class="signature" x="1000" y="205" text-anchor="middle">TODAY</tspan>
-  </text>
+    <!-- "每天一个点，连成线" 极小说明 -->
+    <text font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="10"
+          fill="rgba(255,255,255,0.35)" letter-spacing="3">
+      <tspan class="signature" x="200" y="205">DAY 001</tspan>
+      <tspan class="signature" x="880" y="205" text-anchor="middle">TODAY</tspan>
+    </text>
+  </g>
 
   <!-- 小伞 icon（直接复制 logo-D 的伞，scale 0.32，translate 到画伞左侧；钩子镜像朝左） -->
   <g class="umbrella-mini">
-    <g transform="translate(10, 208) scale(0.38)">
+    <g transform="translate(-110, 20) scale(0.90)">
       <!-- Canopy -->
       <path d="M 175,170 A 115,85 0 0 1 405,170 Z"
             fill="url(#umbrellaGrad)" stroke="#8478d9" stroke-width="1.5"/>
