@@ -15,7 +15,7 @@
 专注两个方向：
 
 - 🧩 **AI + OPC（一人公司）** — 把"能做能卖"的独立开发者工作流沉淀成可复用 Skills
-- 👧 **AI + 教育** — 探索 AI 时代的 K12 教育新范式 + AI+OPC 转型教育
+- 👧 **AI + 教育** — 探索 AI 时代的 K12 教育新范式 + AI+OPC 实验室
 
 <p>
   <a href="https://x.com/yfusionai"><img src="https://img.shields.io/badge/-@yfusionai-000000?style=flat-square&logo=x&logoColor=white" alt="X"></a>
@@ -67,8 +67,8 @@
       <h3>👧 AI + 教育探索</h3>
       <ul>
         <li>K12 试点：用 AI 帮 12 岁孩子体验"我能创造东西"</li>
-        <li>AI+OPC 转型教育：把摸索的方法论分享给同路人</li>
-        <li>过程录成视频内容，模仿 Salman Khan 路径</li>
+        <li>AI+OPC 实验室：把摸索的方法论分享给同路人</li>
+        <li>过程录成视频内容，学习 Salman Khan 路径</li>
       </ul>
     </td>
   </tr>
