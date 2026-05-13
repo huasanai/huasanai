@@ -15,7 +15,7 @@ Former education ops team lead, turned full-time AI Coding indie developer. Lear
 Currently exploring two directions:
 
 - 🧩 **AI + OPC (One Person Company)** — Turning indie-dev workflows into reusable Claude Code Skills, exploring the smallest viable business loop for a one-person AI-native company.
-- 👧 **AI + Education** — Piloting with my 12-year-old niece: helping kids experience *"I can create things"* with AI. Plus mentoring others transitioning into the AI + OPC path.
+- 👧 **AI + Education** — Exploring a new K12 paradigm for the AI era: helping young learners experience *"I can create things"*. Plus mentoring others transitioning into the AI + OPC path.
 
 <p>
   <a href="https://x.com/yfusionai"><img src="https://img.shields.io/badge/-@yfusionai-000000?style=flat-square&logo=x&logoColor=white" alt="X"></a>
@@ -63,7 +63,7 @@ Currently exploring two directions:
     <td width="50%" valign="top">
       <h3>👧 AI + Education Pilot</h3>
       <ul>
-        <li>Piloting with my 12-year-old niece — installing the self-belief <em>"I can create things"</em></li>
+        <li>K12 pilot — helping a 12-year-old experience the self-belief <em>"I can create things"</em> with AI</li>
         <li>Sharing the process for others transitioning into AI + OPC</li>
         <li>Recording everything as content, Salman Khan style</li>
       </ul>
